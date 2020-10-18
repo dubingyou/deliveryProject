@@ -18,7 +18,6 @@
     </context:component-scan>
 
 
-
     <!-- 配置链接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="${jdbc.url}"/>
@@ -36,11 +35,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
-        <property name="configuration">
-            <bean class="org.apache.ibatis.session.Configuration">
-                <property name="mapUnderscoreToCamelCase" value="true"/>
-            </bean>
-        </property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -52,7 +47,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <!-- 事务通知/增强   -->
-    <tx:advice  transaction-manager="transactionManager" id="interceptor">
+    <tx:advice transaction-manager="transactionManager" id="interceptor">
         <tx:attributes>
             <tx:method name="*"/>
         </tx:attributes>
