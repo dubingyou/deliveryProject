@@ -4,6 +4,13 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+
+    <!--实体类包位置-->
+    <typeAliases>
+        <package name="com.delivery.entity"/>
+    </typeAliases>
+
+
     <plugins>
         <!--分页插件-->
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
