@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.delivery.dao.StaffDao">
+    <resultMap id="StaffMap" type="Staff">
+        <id property="id" column="id"/>
+        <result property="uuid" column="uuid"/>
+        <result property="name" column="name"/>
+        <result property="telephone" column="telephone"/>
+        <result property="haspda" column="haspda"/>
+        <result property="deltag" column="deltag"/>
+        <result property="station" column="station"/>
+        <result property="standard" column="standard"/>
+    </resultMap>
+    <insert id="addStaff">
+        insert INTO staff(uuid,name,telephone,haspda,deltag,station,standard)
+        VALUE(#{uuid},#{name},#{telephone},#{haspda},#{deltag},#{station},#{standard})
+    </insert>
+    <update id="removeStaff">
+        UPDATE staff SET deltag=#{deltag} where id=#{id}
+    </update>
+    <update id="updateStaff">
+        UPDATE staff SET id=#{id}
+        <if test="telephone!=null and telephone!=''">,telephone=#{telephone}</if>
+        <if test="haspda!=null and haspda!=''"> ,haspda=#{haspda}</if>
+        <if test="station!=null and station!=''">,station=#{station}</if>
+        <if test="standard!=null and station!=''"> ,standard=#{standard}</if>
+        where id=#{id}
+    </update>
+    <select id="selectStaffDeltagIsYes" resultMap="StaffMap" parameterType="Staff">
+        select id,uuid,name,telephone,haspda,deltag,station,standard FROM staff where deltag='Y'
+    </select>
+    <select id="selectAllStaff" resultMap="StaffMap" parameterType="Staff">
+        select id,uuid,name,telephone,haspda,deltag,station,standard from staff
+    </select>
+    <select id="selectStaffByOneElement" resultMap="StaffMap" parameterType="Staff">
+        SELECT id,uuid,name,telephone,haspda,deltag,station,standard from staff
+        where 1=1
+        <if test="name!=null and name!=''">and name=#{name}</if>
+        <if test="station!=null and station!=''"> and station=#{station}</if>
+        <if test="uuid!=null and uuid!=''">and uuid=#{uuid}</if>
+
+    </select>
+</mapper>
