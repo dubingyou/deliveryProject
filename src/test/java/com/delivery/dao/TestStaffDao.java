@@ -16,6 +16,9 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by LEO15 on 2020/10/19.
+ * @author fujianian
+ * @Classname TestStaffDao
+ * @Date 2020/10/19
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -81,6 +84,12 @@ public class TestStaffDao extends AbstractJUnit4SpringContextTests {
         staff.setStation("test");
         List<Staff> staff1=staffDao.selectStaffByOneElement(staff);
         assertFalse(staff1.isEmpty());
+    }
+
+    @Test
+    public void selectStaffByStandard(){
+        List<Staff> staff=staffDao.selectStaffByStandard("test");
+        assertFalse(staff.isEmpty());
     }
 
 

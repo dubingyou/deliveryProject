@@ -2,6 +2,7 @@ package com.delivery.entity;
 
 /**
  * Created by LEO15 on 2020/10/18.
+ * @author fujianian
  */
 public class Staff {
     private int id;

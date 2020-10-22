@@ -40,4 +40,7 @@
         <if test="uuid!=null and uuid!=''">and uuid=#{uuid}</if>
 
     </select>
+    <select id="selectStaffByStandard" resultMap="StaffMap" parameterType="Staff">
+        select * from staff where standard=#{standard};
+    </select>
 </mapper>
