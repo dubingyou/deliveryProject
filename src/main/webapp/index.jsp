@@ -15,6 +15,6 @@
     <title>Title</title>
 </head>
 <body>
-
+<a href="admin/loginView">userindex</a>
 </body>
 </html>
